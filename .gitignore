@@ -1,0 +1,4 @@
+mercedes/*.csv*
+mercedes/*.log*
+mercedes/*.json*
+.scrapy
