@@ -22,6 +22,8 @@ class MercedesItem(scrapy.Item):
     ID_CLIENT = scrapy.Field()
     PROVINCE = scrapy.Field()
     VILLE = scrapy.Field()
+    PUISSANCE = scrapy.Field()
+    DEPARTEMENT = scrapy.Field()
     NOM = scrapy.Field()
     GARAGE_NAME = scrapy.Field()
     SLUG = scrapy.Field()
@@ -41,7 +43,7 @@ class MercedesItem(scrapy.Item):
     PRIX = scrapy.Field()
     COULEUR = scrapy.Field()
     BOITE = scrapy.Field()
-    DATE_ENREGISTREMENT = scrapy.Field()
+    #DATE_ENREGISTREMENT = scrapy.Field()
     CARROSSERIE = scrapy.Field()
 
 

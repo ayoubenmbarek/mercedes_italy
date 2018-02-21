@@ -119,8 +119,14 @@ class mercedesSpider(scrapy.Spider):
                 myItem['TELEPHONE'] = bb[-1]  # dealer_phone to TELEPHONE
                # myItem['ADRESSE'] =  response.xpath('//div[@class="col-content"]/p[1]/text()').extract_first()# old
                 myItem['ADRESSE'] =  re.search(r'streetAddress": "(.*?)"', response.body ).group(1)
-                myItem['PROVINCE'] =  re.search(r'addressRegion": "(.*?)"', response.body ).group(1)
-                myItem['VILLE'] =  re.search(r'"addressLocality": "(.*?)"', response.body ).group(1)
+                #myItem['DEPARTEMENT'] = re.search(r'addressRegion": "(.*?)"', response.body ).group(1) #was prvince_changed09-20
+                myItem['PROVINCE'] = " "#  re.search(r'addressRegion": "(.*?)"', response.body ).group(1)
+                myItem['VILLE'] =  re.search(r'"addressLocality": "(.*?)"', response.body ).group(1)#was VILLE changed09-20 
+                #myItem['DEPARTEMENT'] = locality +' '+ '('+myItem['PROVINCE']+')'
+                myItem['DEPARTEMENT'] = re.search(r'addressRegion": "(.*?)"', response.body ).group(1)
+                ville = myItem['ADRESSE'].split(',')
+                #myItem['VILLE'] = ville[0] #clean ville after crawling
+                myItem['PUISSANCE'] = response.xpath('//ul[@class="last"]/li[1]/span/text()').extract_first() 
                 myItem['GARAGE_NAME'] = response.xpath('//div[@class="col-full feedback map"]/div/h1/text()').extract() #change dealer_name to garage_name
                 #href_dealer = myItem['DEALER_URL']
                 #half_url = href_dealer.split('auto/')
